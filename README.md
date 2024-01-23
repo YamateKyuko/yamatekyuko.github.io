@@ -1,0 +1,1 @@
+# YamateKyuko.github.io
