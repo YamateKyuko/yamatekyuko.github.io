@@ -1,0 +1,222 @@
+body {
+  position: relative;
+  margin: 0;
+  /* overflow: hidden; */
+}
+
+& * {
+  margin: 0;
+
+}
+
+.animation {
+  position: fixed;
+  width: 100vw;
+  height: 25vh;
+  display: flex;
+  animation: animation 20s;
+  clip-path: inset(0);
+  font-size: calc(12.5vmin/256);
+  background-color: white;
+  .ci {
+    position: relative;
+    display: block;
+    margin: auto;
+    width: 576em;
+    height: 256em;
+    
+    animation: ci 10s;
+    .inside, .outside, .pass1, .pass2 {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 256em;
+      height: 256em;
+      .logo {
+        position: absolute;
+        width: 256em;
+        height: 256em;
+        transform-origin: 10.4326em 215.4719em;
+        transform: rotate(26.5650deg);
+        animation: logo 10s;
+        .tilt {
+          width: 256em;
+          height: 256em;
+          animation: tilt 10s;
+          & * {
+            position: absolute;
+            width: 64em;
+            border: 8em solid green;
+            box-sizing: border-box;
+          }
+          .left {
+            top: 143.5016em;
+            left: 24em;
+          }
+          .center {
+            top: 77.3655em;
+            left: 96em;
+          }
+          .right {
+            top: 121.4359em;
+            left: 168em;
+          }
+        }
+      }
+    }
+    .inside, .outside {
+      clip-path: inset(0);
+      .left, .center, .right {
+        height: 100vmax;
+      }
+      .left {animation: logo_left 5s;}
+      .center {animation: logo_center 5s;}
+      .right {animation: logo_right 5s;}
+    }
+    .pass1, .pass2 {
+      .left, .center, .right {
+        height: 50vmax;
+        transform: translateY(100vmax);
+      }
+      
+    }
+    .pass1 {
+      left: 512em;
+      .left {animation: path1_left 10s;}
+      .center {animation: path1_center 10s;}
+      .right {animation: path1_right 10s;}
+    }
+    .pass2 {
+      left: -512em;
+      .left {animation: path2_left 10s;}
+      .center {animation: path2_center 10s;}
+      .right {animation: path2_right 10s;}
+    }
+    .inside {
+      background-color: #006400;
+      .left, .center, .right {
+        border: 8em solid white !important;
+      }
+    }
+    .outside {
+      animation: outside 10s;
+      
+    }
+    .logoType {
+      position: absolute;
+      top: 0;
+      left: 256em;
+      height: 256em;
+    }
+  }
+}
+
+.notice {
+  animation: notice 20s;
+  text-align: center;
+  padding-top: 25vh;
+  & h1, h2, p {
+    transform: scale(1, 0.9);
+    line-height: calc(1em/0.9);
+    word-break: keep-all;
+  }
+  & ul {
+    width: 100%;
+    list-style: none;
+    padding: 0;
+    & li {
+      line-height: 1em;
+    }
+  }
+  
+}
+
+@keyframes animation {
+  0% {height: 100vh; font-size: calc(25vmin/256);}
+  75% {height: 100vh; font-size: calc(25vmin/256);}
+  100% {height: 25vh; font-size: calc(12.5vmin/256);}
+}
+
+@keyframes notice {
+  0% {padding-top: 100vh; height: 0;}
+  75% {padding-top: 100vh; height: 0;}
+  100% {padding-top: 25vh; height: 75vh;}
+}
+
+@keyframes ci {
+  0% {transform: translate(50vmax, -100vmax);}
+  50% {transform: translate(50vmax, -100vmax);}
+  100% {transform: translate(0, 0);}
+}
+
+@keyframes outside {
+  0% {clip-path: inset(-200vmax);}
+  50% {clip-path: inset(-200vmax);}
+  75% {clip-path: inset(-100vmax);}
+  100% {clip-path: inset(0vmax);}
+}
+
+@keyframes tilt {
+  0% {transform: translateY(111.8034vmax);}
+  50% {transform: translateY(111.8034vmax);}
+  100% {transform: translateY(0);}
+}
+
+@keyframes logo_left {
+  0% {transform: translateY(100vmax);}
+  30% {transform: translateY(0);}
+}
+
+@keyframes logo_center {
+  0% {
+    transform: translateY(100vmax);
+  }
+  60% {
+    transform: translateY(100vmax);
+  }
+  90% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes logo_right {
+  0% {transform: translateY(100vmax);}
+  30% {transform: translateY(100vmax);}
+  60% {transform: translateY(0);}
+}
+
+@keyframes path1_left {
+  0% {transform: translateY(-125vmax);}
+  40% {transform: translateY(-125vmax);}
+  100% {transform: translateY(75vmax);}
+}
+
+@keyframes path1_center {
+  0% {transform: translateY(-125vmax);}
+  0% {transform: translateY(-125vmax);}
+  60% {transform: translateY(75vmax);}
+}
+
+@keyframes path1_right {
+  0% {transform: translateY(-125vmax);}
+  20% {transform: translateY(-125vmax);1}
+  50% {transform: translateY(75vmax);}
+}
+
+@keyframes path2_left {
+  0% {transform: translateY(-125vmax);}
+  10% {transform: translateY(-125vmax);}
+  40% {transform: translateY(75vmax);}
+}
+
+@keyframes path2_center {
+  0% {transform: translateY(-125vmax);}
+  30% {transform: translateY(-125vmax);}
+  90% {transform: translateY(75vmax);}
+}
+
+@keyframes path2_right {
+  0% {transform: translateY(-125vmax);}
+  50% {transform: translateY(-125vmax);1}
+  80% {transform: translateY(75vmax);}
+}

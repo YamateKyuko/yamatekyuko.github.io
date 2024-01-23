@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_レイヤー_2" data-name="レイヤー 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #006400;
+      }
+    </style>
+  </defs>
+  <g id="_0" data-name="0">
+    <g>
+      <g id="center">
+        <rect class="cls-1" x="104" y="85.3655" width="48" height="170.6345"/>
+      </g>
+      <g id="frame" data-name="LWPOLYLINE">
+        <polygon class="cls-1" points="160 256 160 77.3655 96 77.3655 96 256 88 256 88 143.5016 24 143.5016 24 256 0 256 0 0 256 0 256 256 232 256 232 121.4359 168 121.4359 168 256 160 256"/>
+      </g>
+      <g id="left" data-name="LWPOLYLINE">
+        <rect class="cls-1" x="32" y="151.5016" width="48" height="104.4984"/>
+      </g>
+      <g id="right" data-name="LWPOLYLINE">
+        <rect class="cls-1" x="176" y="129.4359" width="48" height="126.5641"/>
+      </g>
+    </g>
+  </g>
+</svg>
