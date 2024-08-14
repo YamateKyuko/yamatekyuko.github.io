@@ -1,22 +1,109 @@
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  margin: 0;
+}
+
+a {
+  position: relative;
+  line-height: 1em;
+  padding-left: 1.25em;
+  text-underline-offset: 0;
+  z-index: 0;
+  transition: opacity .25s;
+  &:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    line-height: 100px;
+    content: "";
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    line-height: 2em;
+    background-color: -webkit-link;
+    transition: opacity .25s;
+  }
+}
+
+a:hover {
+  opacity: 0.75;
+}
+
+a:hover:before {
+  opacity: 0.75;
+}
+
+*::-webkit-scrollbar {
+  display:none;
+}
+
+html {
+  /* height: 100vh; */
+}
+
 body {
   position: relative;
   margin: 0;
-  /* overflow: hidden; */
+  width: 100vw;
+  /* height: 200vh; */
+  display: flex;
+  & h1 {
+    margin: 0;
+    padding-left: 0.5em;
+    line-height: 1em;
+    vertical-align: text-bottom;
+    font-size:  1.5em;
+    align-self: flex-end;
+    font-weight: normal;
+  }
 }
 
 & * {
   margin: 0;
+}
 
+header {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 4em;
+  background-color: white;
+  box-shadow: 0 0.5em 0.5em #fff;
+  z-index: 10;
+  & h1 {
+    margin: none;
+    padding-left: 6.75em;
+    line-height: 4.5em;
+    /* vertical-align: text-bottom; */
+    font-size:  1.5em;
+    align-items: flex-end;
+    font-weight: normal;
+  }
+}
+
+main {
+  margin: 5em 1em 1em 1em;
+  height: auto;
+  & h2 {
+    font-weight: normal;
+  }
+  & p {
+    margin-left: 1em;
+  }
 }
 
 .animation {
-  position: fixed;
-  width: 100vw;
-  height: 25vh;
-  display: flex;
+  display: inline-flex;
+  float: left;
+  /* position: fixed; */
+  /* width: 100vw;
+  height: 25vh; */
+
+  /* display: flex; */
   animation: animation 20s;
   clip-path: inset(0);
-  font-size: calc(12.5vmin/256);
+  font-size: calc(4em/256);
   background-color: white;
   .ci {
     position: relative;
@@ -24,7 +111,6 @@ body {
     margin: auto;
     width: 576em;
     height: 256em;
-    
     animation: ci 10s;
     .inside, .outside, .pass1, .pass2 {
       position: absolute;
@@ -132,9 +218,9 @@ body {
 }
 
 @keyframes animation {
-  0% {height: 100vh; font-size: calc(25vmin/256);}
-  75% {height: 100vh; font-size: calc(25vmin/256);}
-  100% {height: 25vh; font-size: calc(12.5vmin/256);}
+  0% {width: 100vw; height: 100vh; font-size: calc(25vmin/256);}
+  75% {width: 100vw; height: 100vh; font-size: calc(25vmin/256);}
+  100% {width: 9rem; height: 4rem; font-size: calc(4em/256);}
 }
 
 @keyframes notice {
@@ -218,5 +304,23 @@ body {
 @keyframes path2_right {
   0% {transform: translateY(-125vmax);}
   50% {transform: translateY(-125vmax);1}
+  80% {transform: translateY(75vmax);}
+}
+
+@keyframes path2_left {
+  0% {transform: translateY(-125vmax);}
+  10% {transform: translateY(-125vmax);}
+  40% {transform: translateY(75vmax);}
+}
+
+@keyframes path2_center {
+  0% {transform: translateY(-125vmax);}
+  30% {transform: translateY(-125vmax);}
+  90% {transform: translateY(75vmax);}
+}
+
+@keyframes path2_right {
+  0% {transform: translateY(-125vmax);}
+  50% {transform: translateY(-125vmax);}
   80% {transform: translateY(75vmax);}
 }
