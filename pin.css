@@ -1,0 +1,164 @@
+body {
+  display: flex;
+  & div {
+    margin: 0.5rem;
+    margin-top: auto;
+  }
+}
+
+table, th, td {
+  border: 1px solid #000;
+  border-collapse: collapse;
+}
+
+table {
+  & thead * {
+    writing-mode: vertical-rl;
+    height: 8rem;
+    font-size: 1rem;
+    font-weight: normal;
+
+  } 
+  & tbody {
+    & tr {
+      & * {
+        padding: 0;
+        text-align: center;
+        box-sizing: content-box;
+        height: 2rem;
+        /* line-height: 2rem; */
+        /* background-color: #f00; */
+        & span {
+          display: block;
+          font-size: 0.75rem;
+          height: 0.5rem;
+          line-height: 0.5rem; 
+        }
+      }
+      > *:nth-child(1) {width: 2rem;}
+      > *:nth-child(2) {width: 1.5rem;}
+      > *:nth-child(3) {width: 3rem;}
+      > *:nth-child(4) {width: 1.5rem;}
+      > *:nth-child(5) {width: 3rem;}
+      > *:nth-child(6) {width: 3rem;}
+      > *:nth-child(7) {width: 3rem;}
+      > *:nth-child(8) {width: 3rem;}
+
+      > *:nth-child(1) {font-weight: 1000;}
+      > *:nth-child(2) {font-size: 0.75rem;}
+      > *:nth-child(3) {font-weight: 1000;}
+      > *:nth-child(4) {font-size: 0.75rem;}
+
+      > *:nth-child(1) {font-size: 1.25rem;}
+      > *:nth-child(3) {font-size: 1.25rem;}
+    }
+  }
+}
+
+.uart *:nth-child(5) {
+  background-color: #f00;
+  color: #fff;
+}
+
+.spi *:nth-child(5) {
+  background-color: #f30;
+  color: #fff;
+}
+
+.i2c *:nth-child(5) {
+  background-color: #f60;
+  color: #fff;
+}
+
+.oc0 *:nth-child(6) {
+  background-color: #00f;
+  color: #fff;
+}
+
+.oc1 *:nth-child(6) {
+  background-color: #03f;
+  color: #fff;
+}
+
+.oc2 *:nth-child(6) {
+  background-color: #06f;
+  color: #fff;
+}
+
+.analog *:nth-child(7) {
+  background-color: #0c0;
+  color: #fff;
+}
+
+.comp *:nth-child(7) {
+  background-color: #0f0;
+  color: #fff;
+}
+
+.gnd *:nth-child(8) {
+  background-color: #000;
+  color: #fff;
+}
+
+.v5 *:nth-child(8) {
+  background-color: #ff0;
+  color: #000;
+}
+
+.v33 *:nth-child(8) {
+  background-color: #cc0;
+  color: #000;
+}
+
+.reset *:nth-child(8) {
+  background-color: #0ff;
+  color: #000;
+}
+
+.bled *:nth-child(8) {
+  background-color: #f0f;
+  color: #fff;
+}
+
+table.communication {
+  & tbody {
+    & tr {
+      & * {
+        width: 3rem;
+        font-weight: normal;
+        font-size: 1rem;
+      }
+      
+    }
+    & tr:nth-child(1) {
+      > *:nth-child(1) {background-color: #0ff;}
+      > *:nth-child(2) {background-color: #f30;}
+      > *:nth-child(3) {background-color: #f30;}
+
+      > *:nth-child(1) {color: #000;}
+      > *:nth-child(2) {color: #fff;}
+      > *:nth-child(3) {color: #fff;}
+    }
+    & tr:nth-child(2) {
+      > *:nth-child(1) {background-color: #000;}
+      > *:nth-child(2) {background-color: #f30;}
+      > *:nth-child(3) {background-color: #ff0;}
+
+      > *:nth-child(1) {color: #fff;}
+      > *:nth-child(2) {color: #fff;}
+      > *:nth-child(3) {color: #000;}
+    }
+  }
+}
+
+table.denatsu {
+  & tbody {
+    & tr {
+      & * {
+        width: 3rem;
+        font-weight: normal;
+        font-size: 1rem;
+      }
+    }
+  }
+}

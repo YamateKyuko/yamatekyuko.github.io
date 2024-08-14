@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./avrMeirei.css">
+  </head>
+  <body>
+
+    mega328 AVRe+コア ELPM EIJMP EICALL 欠落<br>
+    <table>
+      <caption>汎用レジスタ</caption>
+      <tbody>
+        <tr>
+          <td>
+            範囲
+          </td>
+          <td>
+            R0~R15
+            <span>乗算即値不可</span>
+          </td>
+          <td>
+            R16~R23
+            <span>自由</span>
+          </td>
+          <td>
+            R24~R31
+            <span>乗算不可</span>
+          </td>
+        </tr>
+        <tr>
+          <td>16bitレジスタ</td>
+          <td>
+            R1:R0
+            <span>乗算結果格納</span>
+          </td>
+          <td>
+            R25:R24
+          </td>
+          <td>
+            R27:R26
+            <span>Xレジスタ</span>
+          </td>
+          <td>
+            R29:R28
+            <span>Yレジスタ</span>
+          </td>
+          <td>
+            R31:R30
+            <span>Zレジスタ</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table>
+      <caption>記号</caption>
+      <tr>
+        <td>
+          オペランド
+        </td>
+        <td>
+          R
+          <span></span>
+          <span>結果</span>
+        </td>
+        <td>
+          K
+          <span>8bit</span>
+          <span>即値</span>
+        </td>
+        <td>
+          K6
+          <span>6bit</span>
+          <span>即値</span>
+        </td>
+        <td>
+          k
+          <span>7,12,16bit</span>
+          <span>アドレス即値</span>
+        </td>
+        <td>
+          b
+          <span>0~3,7</span>
+          <span>ビット番号</span>
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>
+          レジスタ
+        </td>
+        <td>
+          s
+          <span>0~7</span>
+          <span>SREGビット番号</span>
+        </td>
+        <td>
+          Rd
+          <span>R0~R31</span>
+          <span>転送先汎用レジスタ</span>
+        </td>
+        <td>
+          Rr
+          <span>R0~R31</span>
+          <span>転送元汎用レジスタ</span>
+        </td>
+        <td>
+          A
+          <span>$00~$3f</span>
+          <span>IOアドレス</span>
+        </td>
+        <td>
+          q
+          <span>主に6bit</span>
+          <span>間接アドレス変位</span>
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>指示</td>
+        <td>
+          DS(K)
+          <span>データ空間指示</span>
+        </td>
+        <td>
+          PS(K)
+          <span>プログラム空間指示</span>
+        </td>
+        <td>
+          IO(A)
+          <span>IOレジスタ指示</span>
+        </td>
+        <td>
+          IO(A,b)
+          <span>IOビット指示</span>
+        </td>
+        <td>
+          Rd(n)
+          <span>汎用ビット指示</span>
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>特定レジスタ</td>
+        <td>
+          ML
+          <span></span>
+          <span>乗算結果格納</span>
+        </td>
+        <td>
+          SREG
+          <span>ステータスレジスタ</span>
+        </td>
+        <td>
+          STACK
+          <span>スタック</span>
+        </td>
+        <td>
+          PC
+          <span>プログラムカウンタ</span>
+        </td>
+        <td>
+          XYZ
+          <span>X,Y,Z</span>
+          <span>間接アドレスレジスタ</span>
+        </td>
+        <td>
+          Rf
+          <span>R24~R31</span>
+          <span>16bitレジスタ</span>
+        </td>
+      </tr>
+    </table>
+
+    <table>
+      <caption>加減・論理</caption>
+      <thead>
+        <tr>
+          <th>命令</th>
+          <th>汎用間</th>
+          <th>汎用間ｷｬﾘｰ</th>
+          <th>汎用即値</th>
+          <th>汎用即値ｷｬﾘｰ</th>
+          <th>Rf・K6</th>
+          <th>増減</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            加算
+            <span></span>
+            <span></span>
+          </td>
+          <td>
+            ADD
+            <div>1</div>
+            <span>Rd,Rr</span>
+            <span>Rd ← Rd + Rr</span>
+          </td>
+          <td>
+            ADC
+            <div>1</div>
+            <span>Rd,Rr</span>
+            <span>Rd ← Rd + Rr + C</span>
+          </td>
+          <td></td>
+          <td></td>
+          <td>
+            ADIW
+            <div>2</div>
+            <span>Rd,K</span>
+            <span>Rf ← Rf + K</span>
+          </td>
+          <td>
+            INC
+            <div>1</div>
+            <span>Rd</span>
+            <span>Rd ← Rd + 1</span>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            減算
+            <span></span>
+            <span></span>
+          </td>
+          <td>
+            SUB
+            <div>1</div>
+            <span>Rd,Rr</span>
+            <span>Rd ← Rd - Rr</span>
+          </td>
+          <td>
+            SBC
+            <div>1</div>
+            <span>Rd,Rr</span>
+            <span>Rd ← Rd - Rr - C</span>
+          </td>
+          <td>
+            SUBI
+            <div>1</div>
+            <span>Rd,K</span>
+            <span>Rd ← Rd - K</span>
+          </td>
+          <td>
+            SBCI
+            <div>1</div>
+            <span>Rd,K</span>
+            <span>Rd ← Rd - K - C</span>
+          </td>
+          <td>
+            SBIW
+            <div>2</div>
+            <span>Rd,K</span>
+            <span>Rf ← Rf - K</span>
+          </td>
+          <td>
+            DEC
+            <div>1</div>
+            <span>Rd</span>
+            <span>Rd ← Rd - 1</span>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            論理積
+            <span></span>
+            <span></span>
+          </td>
+          <td>
+            AND
+            <div>1</div>
+            <span>Rd,Rr</span>
+            <span>Rd ← Rd & Rr</span>
+          </td>
+          <td></td>
+          <td>
+            ANDI
+            <div>1</div>
+            <span>Rd,K</span>
+            <span>Rd ← Rd & K</span>
+          </td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>
+            論理和
+            <span></span>
+            <span></span>
+          </td>
+          <td>
+            OR
+            <div>1</div>
+            <span>Rd,Rr</span>
+            <span>Rd ← Rd | Rr</span>
+          </td>
+          <td></td>
+          <td>
+            ORI
+            <div>1</div>
+            <span>Rd,K</span>
+            <span>Rd ← Rd | K</span>
+          </td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>
+            排他的論理和
+            <span></span>
+            <span></span>
+          </td>
+          <td>
+            EOR
+            <div>1</div>
+            <span>Rd,Rr</span>
+            <span>Rd ← Rd ^ Rr</span>
+          </td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <table>
+      <caption>乗算</caption>
+      <thead>
+        <tr>
+          <th>命令</th>
+          <th>汎用間</th>
+          <th>汎用間符号</th>
+          <th>汎用間片符</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            乗算
+            <span></span>
+            <span></span>
+          </td>
+          <td>
+            MUL
+            <div>2</div>
+            <span>Rd,Rr</span>
+            <span>ML ← Rd * Rr</span>
+          </td>
+          <td>
+            MULS
+            <div>2</div>
+            <span>Rd,Rr</span>
+            <span>ML ← Rd * Rr</span>
+          </td>
+          <td>
+            MULSU
+            <div>2</div>
+            <span>Rd,Rr</span>
+            <span>ML ← Rd * Rr</span>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            固定小数点乗算
+            <span></span>
+            <span></span>
+          </td>
+          <td>
+            FMUL
+            <div>2</div>
+            <span>Rd,Rr</span>
+            <span>ML ← (Rd * Rr) &#x3c;&#x3c; 1</span>
+          </td>
+          <td>
+            FMULS
+            <div>2</div>
+            <span>Rd,Rr</span>
+            <span>ML ← (Rd * Rr) &#x3c;&#x3c; 1</span>
+          </td>
+          <td>
+            FMULSU
+            <div>2</div>
+            <span>Rd,Rr</span>
+            <span>ML ← (Rd * Rr) &#x3c;&#x3c; 1</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table>
+      <caption>ジャンプ</caption>
+      <thead>
+        <tr>
+          <th>命令</th>
+          <th>絶対</th>
+          <th>相対</th>
+          <th>Z間接</th>
+          <th>拡Z間接</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            ジャンプ
+          </td>
+          <td>
+            JMP
+            <div>3</div>
+            <span>k</span>
+            <span>PC ← k</span>
+          </td>
+          <td>
+            RJMP
+            <div>3</div>
+            <span>k</span>
+            <span>PC ← PC + k + 1</span>
+          </td>
+          <td>
+            IJMP
+            <div>3</div>
+            <span></span>
+            <span>PC ← Z</span>
+          </td>
+          <td>
+            EIJMP
+            <div>3</div>
+            <span></span>
+            <span>PC ← Z , EIND</span>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            呼び出し
+            <span>STACK ← PC</span>
+          </td>
+          <td>
+            CALL
+            <div>3</div>
+            <span>k</span>
+            <span>PC ← k</span>
+          </td>
+          <td>
+            RCALL
+            <div>3</div>
+            <span>k</span>
+            <span>PC ← PC + k + 1</span>
+          </td>
+          <td>
+            ICALL
+            <div>3</div>
+            <span></span>
+            <span>PC ← Z</span>
+          </td>
+          <td>
+            EICALL
+            <div>3</div>
+            <span></span>
+            <span>PC ← Z , EIND</span>
+          </td>
+        </tr>
+        
+      </tbody>
+    </table>
+    <table>
+      <caption>復帰</caption>
+      <thead>
+        <tr>
+          <th>命令</th>
+          <th>呼出</th>
+          <th>割込</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            復帰
+          </td>
+          <td>
+            RET
+            <div>4</div>
+            <span></span>
+            <span>PC ← STACK</span>
+          </td>
+          <td>
+            RETI
+            <div>4</div>
+            <span></span>
+            <span>PC ← STACK</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table>
+      <caption>比較</caption>
+      <thead>
+        <tr>
+          <th>命令</th>
+          <th>汎用間</th>
+          <th>汎用即値</th>
+          <th>汎用間ｷｬﾘｰ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            比較
+          </td>
+          <td>
+            CP
+            <div>1</div>
+            <span>Rd,Rr</span>
+            <span>Rd - Rr</span>
+          </td>
+          <td>
+            CPC
+            <div>1</div>
+            <span>Rd,Rr</span>
+            <span>Rd - Rr</span>
+          </td>
+          <td>
+            CPI
+            <div>1</div>
+            <span>Rd,K</span>
+            <span>Rd - K</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table>
+      <caption>SREG</caption>
+      <thead>
+        <tr>
+          <th>命令</th>
+          <th>指定ビット</th>
+          <th>I</th>
+          <th>T</th>
+          <th>H</th>
+          <th>S</th>
+          <th>V</th>
+          <th>N</th>
+          <th>Z</th>
+          <th>C</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            0でジャンプ
+            <span>&& PC ← PC + k + 1</span>
+          </td>
+          <td>
+            BRBC
+            <div>12</div>
+            <span>s,k</span>
+            <span>SREG(s) == 0</span>
+          </td>
+          <td>
+            BRID
+            <div>12</div>
+            <span>k</span>
+            <span>I == 0</span>
+          </td>
+          <td>
+            BRTC
+            <div>12</div>
+            <span>k</span>
+            <span>T == 0</span>
+          </td>
+          <td>
+            BRHC
+            <div>12</div>
+            <span>k</span>
+            <span>H == 0</span>
+          </td>
+          <td>
+            BRGE
+            <div>12</div>
+            <span>k</span>
+            <span>S == 0</span>
+          </td>
+          <td>
+            BRVC
+            <div>12</div>
+            <span>k</span>
+            <span>V == 0</span>
+          </td>
+          <td>
+            BRPL
+            <div>12</div>
+            <span>k</span>
+            <span>N == 0</span>
+          </td>
+          <td>
+            BRNE
+            <div>12</div>
+            <span>k</span>
+            <span>Z == 0</span>
+          </td>
+          <td>
+            BRCC
+            <div>12</div>
+            <span>k</span>
+            <span>C == 0</span>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            1でジャンプ
+            <span>
+              && PC ← PC + k + 1
+            </span>
+          </td>
+          <td>
+            BRBS
+            <div>12</div>
+            <span>s,k</span>
+            <span>SREG(s) == 1</span>
+          </td>
+          <td>
+            BRIE
+            <div>12</div>
+            <span>k</span>
+            <span>I == 1</span>
+          </td>
+          <td>
+            BRTS
+            <div>12</div>
+            <span>k</span>
+            <span>T == 1</span>
+          </td>
+          <td>
+            BRHS
+            <div>12</div>
+            <span>k</span>
+            <span>H == 1</span>
+          </td>
+          <td>
+            BRLT
+            <div>12</div>
+            <span>k</span>
+            <span>S == 1</span>
+          </td>
+          <td>
+            BRVS
+            <div>12</div>
+            <span>k</span>
+            <span>V == 1</span>
+          </td>
+          <td>
+            BRMI
+            <div>12</div>
+            <span>k</span>
+            <span>N == 1</span>
+          </td>
+          <td>
+            BREQ
+            <div>12</div>
+            <span>k</span>
+            <span>Z == 1</span>
+          </td>
+          <td>
+            BRCS
+            <div>12</div>
+            <span>k</span>
+            <span>C == 1</span>
+          </td>
+        </tr>
+        <tr>
+          <td>0を設定</td>
+          <td>
+            BCLR
+            <div>1</div>
+            <span>s</span>
+            <span>SREG(s) ← 0</span>
+          </td>
+          <td>
+            CLI
+            <div>1</div>
+            <span></span>
+            <span>I ← 0</span>
+          </td>
+          <td>
+            CLT
+            <div>1</div>
+            <span></span>
+            <span>T ← 0</span>
+          </td>
+          <td>
+            CLH
+            <div>1</div>
+            <span></span>
+            <span>H ← 0</span>
+          </td>
+          <td>
+            CLS
+            <div>1</div>
+            <span></span>
+            <span>S ← 0</span>
+          </td>
+          <td>
+            CLV
+            <div>1</div>
+            <span></span>
+            <span>V ← 0</span>
+          </td>
+          <td>
+            CLN
+            <div>1</div>
+            <span></span>
+            <span>N ← 0</span>
+          </td>
+          <td>
+            CLZ
+            <div>1</div>
+            <span></span>
+            <span>Z ← 0</span>
+          </td>
+          <td>
+            CLC
+            <div>1</div>
+            <span></span>
+            <span>C ← 0</span>
+          </td>
+        </tr>
+        <tr>
+          <td>1を設定</td>
+          <td>
+            BSET
+            <div>1</div>
+            <span>s</span>
+            <span>SREG(s) ← 1</span>
+          </td>
+          <td>
+            SEI
+            <div>1</div>
+            <span></span>
+            <span>I ← 1</span>
+          </td>
+          <td>
+            SET
+            <div>1</div>
+            <span></span>
+            <span>T ← 1</span>
+          </td>
+          <td>
+            SEH
+            <div>1</div>
+            <span></span>
+            <span>H ← 1</span>
+          </td>
+          <td>
+            SES
+            <div>1</div>
+            <span></span>
+            <span>S ← 1</span>
+          </td>
+          <td>
+            SEV
+            <div>1</div>
+            <span></span>
+            <span>V ← 1</span>
+          </td>
+          <td>
+            SEN
+            <div>1</div>
+            <span></span>
+            <span>N ← 1</span>
+          </td>
+          <td>
+            SEZ
+            <div>1</div>
+            <span></span>
+            <span>Z ← 1</span>
+          </td>
+          <td>
+            SEC
+            <div>1</div>
+            <span></span>
+            <span>C ← 1</span>
+          </td>
+        </tr>
+        <tr>
+          <td>各ビット</td>
+          <td>
+          </td>
+          <td>
+            I
+            <span>全割込許可</span>
+            <span>0で全禁止</span>
+          </td>
+          <td>
+            T
+            <span>一時ビット</span>
+            <span>BLD,BSTで複写書出</span>
+          </td>
+          <td>
+            H
+            <span>ハーフキャリー</span>
+            <span></span>
+          </td>
+          <td>
+            S
+            <span>符号 N EXOR V</span>
+            <span>符号付大小</span>
+          </td>
+          <td>
+            V
+            <span>2の補数溢れ</span>
+            <span></span>
+          </td>
+          <td>
+            N
+            <span>負</span>
+            <span>結果が負</span>
+          </td>
+          <td>
+            Z
+            <span>ゼロ</span>
+            <span>結果がゼロ</span>
+          </td>
+          <td>
+            C
+            <span>キャリー</span>
+            <span>桁上がり</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table>
+      <caption>
+        ビット
+      </caption>
+      <thead>
+        <tr>
+          <th>命令</th>
+          <th>ビット分岐</th>
+          <th>IO</th>
+        </tr>
+        
+      </thead>
+    </table>
+
+  </body>
+</html>
