@@ -1,0 +1,31 @@
+
+& article {
+  & details {
+    & table {
+      & tr {
+        & * {
+          font-size: 1rem;
+          line-height: 1rem;
+          writing-mode: horizontal-tb;
+          height: inherit;
+          font-weight: normal;
+        }
+        & th {
+          font-weight: bold;
+        }
+        & td:first-child {
+          width: inherit;
+          font-weight: bold;
+          font-size: 1.5rem;
+          line-height: 1.5rem;
+          padding: 0 0.5rem;
+        }
+        & td:first-child:first-letter {
+          font-size: 1rem;
+          line-height: 1rem;
+        }
+        
+      }
+    }
+  }
+}
