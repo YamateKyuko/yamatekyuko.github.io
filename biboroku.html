@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>備忘録</h1>
+  <main>
+    <h2>web</h2>
+    <article>
+      <h3>環境構築</h3>
+      <section>
+        <h4>npm VITE 環境構築</h4>
+        <p>npm create vite@latest</p>
+        <h4>mac VITE 環境変数</h4>
+        <p>
+          .zshrcなどに<span>export (環境変数名)="(値)"</span>を追加する。<br>
+          プロジェクトに<span>.env</span>を作成。<br>
+          <span>(VITE_から始まる名前)=$(環境変数名)</span>を記述する。<br>
+          <span>import.meta.env.(環境変数名)</span>で<span>(値)</span>を取得できる。
+        </p>
+        <h4>npm パッケージリスト</h4>
+        <p>
+          npm list<br>
+          -g // グローバル<br>
+        </p>
+      </section>
+    </article>
+    <h2>mac</h2>
+    
+    <h2>趣味</h2>
+    <article>
+      <h3>yt-dlp</h3>
+      <section>
+        <h4>yt-dlpでダウンロード</h4>
+        <p>
+          yt-dlp "(URL)"<br>
+          -f "(フォーマット)" // フォーマット指定<br>
+          --cookies-from-browser Firefox // ニコニコ用<br>
+        </p>
+      </section>
+    </article>
+  </main>
+  
+</body>
+</html>
