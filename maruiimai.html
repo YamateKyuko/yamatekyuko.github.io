@@ -81,7 +81,7 @@
 
   <script>
     const ima = new Date();
-    const byou = (ima.getTime() / 1000) % 86400 - ima.getTimezoneOffset() * 60;
+    const byou = (ima.getTime() / 1000 - ima.getTimezoneOffset() * 60) % 86400;
     const jishin = document.getElementById('jishin');
     const funshin = document.getElementById('funshin');
     const jikan = document.getElementById('jikan');
