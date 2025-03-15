@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1000 500" width="1000" height="500">
+    <defs>
+      <style>
+        .cls-1 {
+          fill: #383e44;
+        }
+      </style>
+    </defs>
+    <g>
+      <g id="_レイヤー_1" data-name="レイヤー_1">
+        <path class="cls-1" d="M319.8,127.3c-.3-.4-.7-.7-1-1.1-68.6-68.6-179.5-68.3-247.8.7-32.4,32.7-50.7,76.9-51,123-.1,46.5,18.4,91.1,51.3,123.7,32.8,33,77.3,51.4,123.7,51.3h0c46.4.2,90.9-18.3,123.8-51.3,67.9-67.8,68.4-178.1,1-246.4ZM193.9,401c-39.6-.3-77.6-16.1-105.7-44.2-28.4-28.2-44.3-66.6-44.3-106.8,0-40.1,15.9-78.6,44.3-106.7,59.1-59,154.4-59,213.5,0,28.4,28.2,44.3,66.6,44.2,106.7-.5,83.9-68.6,151.5-152.1,151Z"/>
+        <path class="cls-1" d="M834.8,127.3c-.3-.4-.7-.7-1-1.1-68.6-68.6-179.5-68.3-247.8.7-32.4,32.7-50.7,76.9-51,123-.1,46.5,18.4,91.1,51.3,123.7,32.8,33,77.3,51.4,123.7,51.3h0c46.4.2,90.9-18.3,123.8-51.3,67.9-67.8,68.4-178.1,1-246.4ZM708.9,401c-39.6-.3-77.6-16.1-105.7-44.2-28.4-28.2-44.3-66.6-44.3-106.8,0-40.1,15.9-78.6,44.3-106.7,59.1-59,154.4-59,213.5,0,28.4,28.2,44.3,66.6,44.2,106.7-.5,83.9-68.6,151.5-152.1,151Z"/>
+        <rect id="_長方形_60" data-name="長方形_60" class="cls-1" x="440" y="87.5" width="25" height="325"/>
+        <rect id="_長方形_61" data-name="長方形_61" class="cls-1" x="955" y="87.5" width="25" height="325"/>
+      </g>
+    </g>
+  </svg>
+
+  <div id="jikan">jikanjikan</div>
+
+  <div id="hari">
+    <div id='jishin'></div>
+    <div id='funshin'></div>
+  </div>
+
+  <style>
+    body {
+      position: relative;
+      margin: 0;
+    }
+    #hari {
+      width: 150px;
+      height: 150px;
+      /* background-color: red; */
+      position: absolute;
+      top: 100px;
+      left: 710px;
+    }
+    #jishin {
+      position: absolute;
+      content: '';
+      top: 37.5px;
+      left: -12.5px;
+      width: 25px;
+      height: 125px;
+      /* border-style: solid; */
+      /* border-color: #383e44; */
+      background-color: #383e44;
+      box-sizing: border-box;
+      /* transform: rotate(75deg); */
+      transform-origin: 12.5px 112.5px;
+      /* border-radius: 12.5px; */
+    }
+    #funshin {
+      position: absolute;
+      content: '';
+      top: 12.5px;
+      left: -12.5px;
+      width: 25px;
+      height: 150px;
+      /* border-style: solid; */
+      /* border-color: #383e44; */
+      background-color: #383e44;
+      box-sizing: border-box;
+      /* transform: rotate(80deg); */
+      transform-origin: 12.5px 137.5px;
+      /* border-radius: 12.5px; */
+    }
+    #jikan {
+      text-align: center;
+    }
+  </style>
+
+  <script>
+    const ima = new Date();
+    const byou = (ima.getTime() / 1000) % 86400 - ima.getTimezoneOffset() * 60;
+    const jishin = document.getElementById('jishin');
+    const funshin = document.getElementById('funshin');
+    const jikan = document.getElementById('jikan');
+    jishin.style.transform = `rotate(${byou / 3600 * 30}deg)`;
+    funshin.style.transform = `rotate(${byou / 60 * 6}deg)`;
+    jikan.innerText = `今、${Math.floor(byou / 3600)}時${Math.floor(byou / 60) % 60}分`;
+    console.log(jishin);
+  </script>
+</body>
+</html>
