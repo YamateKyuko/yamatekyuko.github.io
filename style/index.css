@@ -45,9 +45,9 @@ html {
 body {
   position: relative;
   margin: 0;
-  width: 100vw;
+  width: 100%;
   /* height: 200vh; */
-  display: flex;
+  /* display: flex; */
   & h1 {
     margin: 0;
     padding-left: 0.5em;
@@ -89,7 +89,7 @@ main {
     font-weight: normal;
   }
   & p {
-    margin-left: 1em;
+    margin: 0 0 0.5em 1em;
   }
 }
 
@@ -285,7 +285,7 @@ main {
 
 @keyframes path1_right {
   0% {transform: translateY(-125vmax);}
-  20% {transform: translateY(-125vmax);1}
+  20% {transform: translateY(-125vmax);}
   50% {transform: translateY(75vmax);}
 }
 
@@ -303,7 +303,7 @@ main {
 
 @keyframes path2_right {
   0% {transform: translateY(-125vmax);}
-  50% {transform: translateY(-125vmax);1}
+  50% {transform: translateY(-125vmax);}
   80% {transform: translateY(75vmax);}
 }
 
