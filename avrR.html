@@ -12,6 +12,66 @@
     <h2>レジスタ説明</h2>
     <article>
       <details>
+        <summary>データ空間</summary>
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              <th>呼称</th>
+              <th>位置</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                汎用レジスタ
+              </td>
+              <td>
+                <span>R0</span>
+                <span>R31</span>
+              </td>
+              <td>
+                <span>$0000</span>
+                <span>$001f</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                標準I/0
+              </td>
+              <td>
+                <span>$00</span>
+                <span>$3f</span>
+              </td>
+              <td>
+                <span>$0020</span>
+                <span>$005f</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                拡張I/O
+              </td>
+              <td></td>
+              <td>
+                <span>0060</span>
+                <span>00ff</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                データ空間
+              </td>
+              <td></td>
+              <td>
+                <span>0100</span>
+                <span>08ff</span> 
+              </td>
+            </tr>
+          </tbody>
+        </table>    
+      </details>
+      <details>
         <summary>汎用</summary>
         <table>
           <caption>汎用レジスタ</caption>
@@ -148,6 +208,38 @@
                 Zレジスタ
               </td>
             </tr> -->
+          </tbody>
+        </table>    
+      </details>
+      <details open>
+        <summary>プログラム空間</summary>
+        <table>
+          <caption></caption>
+          <thead>
+            <tr>
+              <th></th>
+              <th>位置</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                標準
+              </td>
+              <td>
+                <span>$0000</span>
+                <span>不定</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                ブート
+              </td>
+              <td>
+                <span>不定</span>
+                <span>$3fff</span>
+              </td>
+            </tr>
           </tbody>
         </table>    
       </details>

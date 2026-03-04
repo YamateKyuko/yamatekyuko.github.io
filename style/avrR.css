@@ -1,7 +1,7 @@
 
 & article {
   & details {
-    & table {
+    & table:first-child {
       & tr {
         & * {
           font-size: 1rem;

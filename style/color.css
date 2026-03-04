@@ -1,0 +1,24 @@
+table, tr, th, td {
+  border: 1px solid black;  
+  border-collapse: collapse;
+}
+
+table {
+  & tbody {
+    color: #fff;
+    & tr {
+      &:nth-child(1) {background-color: #000;}
+      &:nth-child(2) {background-color: #930;}
+      &:nth-child(3) {background-color: #f00;}
+      &:nth-child(4) {background-color: #f60;}
+      &:nth-child(5) {background-color: #fc0;}
+      &:nth-child(6) {background-color: #0c0;}
+      &:nth-child(7) {background-color: #03f;}
+      &:nth-child(8) {background-color: #60f;}
+      &:nth-child(9) {background-color: #666;}
+      &:nth-child(10) {background-color: #fff;}
+      &:nth-child(11) {background-color: #ccc;}
+      
+    }
+  }
+}
