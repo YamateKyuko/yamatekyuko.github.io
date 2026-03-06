@@ -38,10 +38,6 @@ a:hover:before {
   display:none;
 }
 
-html {
-  /* height: 100vh; */
-}
-
 body {
   position: relative;
   margin: 0;
