@@ -1,24 +1,39 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&display=swap');
+
 
 * {
   -ms-overflow-style: none;
   scrollbar-width: none;
   margin: 0;
 
-  font-family: "Noto Sans JP", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
+  /* font-family: "Noto Sans JP", sans-serif; */
+
   font-feature-settings: "palt";
   
   --bk: #222;
   --wh: #fffff8;
 
   --gr: #888;
+  line-height: 1.5rem;
 
   /* --tx: var(--bk);
   --bg: var(--wh);
   color-scheme: light; */
+}
+
+html[lang="ja"] * {
+  font-family: "Noto Sans JP", sans-serif;
+  font-optical-sizing: auto;
+  /* font-weight: 400; */
+  font-style: normal;
+}
+
+html[lang="en"] * {
+  font-family: "Inter Tight", sans-serif;
+  font-optical-sizing: auto;
+  /* font-weight: 400; */
+  font-style: normal;
 }
 
 @media (prefers-color-scheme: light) {
@@ -64,13 +79,15 @@ body {
 }
 
 .header {
-  height: calc(100vh - 10rem);
+  height: calc(100vh - 10.5rem);
+  min-height: 16rem;
   display: flex;
   align-items: center;
   .tateD {
     display: block;
     max-width: 12rem;
-    max-height: calc(100vh - 11rem);
+    max-height: 80%;
+    /* max-height: calc(100vh - 11.5rem); */
     margin: auto;
     transition: .3s;
   }
@@ -83,6 +100,7 @@ main {
     font-weight: 600;
     font-size: 2rem;
     margin-bottom: 1rem;
+    line-height: 3rem;
   }
 }
 
