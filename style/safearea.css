@@ -1,0 +1,19 @@
+body {
+  margin: 0;
+}
+
+header {
+  height: 8rem;
+  overflow-y: scroll;
+  scrollbar-width: 0;
+  pointer-events: none;
+  &::-webkit-scrollbar {display: none;}
+  p {
+    height: 50vh;
+    margin: 0;
+  }
+  h2 {
+    margin: 0;
+    height: 100%;
+  }
+}
