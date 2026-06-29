@@ -12,7 +12,7 @@
 
     <h2>命令</h2>
     <article>
-      <details id="算術論理">
+      <details open="true" id="算術論理">
         <summary>算術論理</summary>
         <!-- 加減 論理 -->
         <table>
@@ -209,6 +209,7 @@
           <thead>
             <tr>
               <th></th>
+              <th>即値</th>
               <th>ニブル</th>
               <th>論理反転</th>
               <th>2の補数</th>
@@ -218,6 +219,12 @@
           <tbody>
             <td>
 
+            </td>
+            <td>
+              LDI
+              <div>1</div>
+              <span>Rd,K</span>
+              <span>Rd ← K</span>
             </td>
             <td>
               SWAP
@@ -370,8 +377,8 @@
         </table>
 
         
-      </details>
-      <details id="汎用">
+      </details open="true">
+      <details open="true" id="汎用">
         <summary>汎用レジスタ</summary>
         <!-- 他 -->
         <table>
@@ -441,10 +448,6 @@
               </td>
           </tbody>
         </table>
-      </details>
-      <details>
-        <summary>比較</summary>
-                <!-- 比較 -->
         <table>
           <caption>比較</caption>
           <thead>
@@ -453,6 +456,7 @@
               <th>汎用間</th>
               <th>汎用即値</th>
               <th>汎用間ｷｬﾘｰ</th>
+              <th>汎用一致ｽｷｯﾌﾟ</th>
             </tr>
           </thead>
           <tbody>
@@ -478,11 +482,63 @@
                 <span>Rd,K</span>
                 <span>Rd - K</span>
               </td>
+              <td>
+                CPSE
+                <div>123</div>
+                <span>Rd,Rr</span>
+                <span>Rd==Rr&&PC+=2·3</span>
+              </td>
             </tr>
           </tbody>
         </table>
-      </details>
-      <details id="SREG">
+      </details open="true">
+      <!-- <details open="true">
+        <summary>比較</summary>
+        <table>
+          <caption>比較</caption>
+          <thead>
+            <tr>
+              <th>命令</th>
+              <th>汎用間</th>
+              <th>汎用即値</th>
+              <th>汎用間ｷｬﾘｰ</th>
+              <th>汎用一致ｽｷｯﾌﾟ</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                比較
+              </td>
+              <td>
+                CP
+                <div>1</div>
+                <span>Rd,Rr</span>
+                <span>Rd - Rr</span>
+              </td>
+              <td>
+                CPC
+                <div>1</div>
+                <span>Rd,Rr</span>
+                <span>Rd - Rr</span>
+              </td>
+              <td>
+                CPI
+                <div>1</div>
+                <span>Rd,K</span>
+                <span>Rd - K</span>
+              </td>
+              <td>
+                CPSE
+                <div>123</div>
+                <span>Rd,Rr</span>
+                <span>Rd==Rr&&PC+=2·3</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </details open="true"> -->
+      <details open="true" id="SREG">
         <summary>SREG</summary>
 
         
@@ -560,7 +616,7 @@
               <td>
                 BRCC
                 <div>12</div>
-                <span>k</span>
+                <span>k (BRSH)</span>
                 <span>C == 0</span>
               </td>
             </tr>
@@ -622,7 +678,7 @@
               <td>
                 BRCS
                 <div>12</div>
-                <span>k</span>
+                <span>k (BRLO)</span>
                 <span>C == 1</span>
               </td>
             </tr>
@@ -787,8 +843,8 @@
             </tr>
           </tbody>
         </table>
-      </details>
-      <details id="分岐">
+      </details open="true">
+      <details open="true" id="分岐">
         <summary>分岐</summary>
         <!-- 分岐 -->
         <table>
@@ -896,8 +952,8 @@
           </tbody>
         </table>
 
-      </details>
-      <details id="I/O">
+      </details open="true">
+      <details open="true" id="I/O">
         <summary>I/O</summary>
         <table>
           <caption>I/O</caption>
@@ -958,8 +1014,8 @@
             </tr>
           </tbody>
         </table>
-      </details>
-      <details id="データ空間">
+      </details open="true">
+      <details open="true" id="データ空間">
 
         <summary>データ空間</summary>
         <table>
@@ -995,13 +1051,13 @@
               <td>
                 LDD
                 <div>2</div>
-                <span>Y+q·Z+q, Rd</span>
+                <span>Rd, Y+q·Z+q</span>
                 <span>Rd ← DS(X·Y·Z), XYZ+q</span>
               </td>
               <td>
                 LDS
                 <div>2</div>
-                <span>k, Rd</span>
+                <span>Rd, k</span>
                 <span>DS(k) ← Rd</span>
               </td>
             </tr>
@@ -1024,21 +1080,21 @@
               <td>
                 STD
                 <div>2</div>
-                <span>Rd, Y+q·Z+q</span>
+                <span>Y+q·Z+q, Rd</span>
                 <span>DS(X·Y·Z) ← Rd, XYZ+q</span>
               </td>
               <td>
                 STS
                 <div>2</div>
-                <span>Rd, k</span>
+                <span>k, Rd</span>
                 <span>(k) ← Rd</span>
               </td>
             </tr>
           </tbody>
         </table>
       
-      </details>
-      <details id="プログラム空間">
+      </details open="true">
+      <details open="true" id="プログラム空間">
         <summary>プログラム空間</summary>
         <table>
           <caption>
@@ -1118,8 +1174,8 @@
             </tr>
           </tbody>
         </table>
-      </details>
-      <details id="スタック">
+      </details open="true">
+      <details open="true" id="スタック">
         <summary>スタック</summary>
         <table>
           <thead>
@@ -1149,8 +1205,8 @@
             </tr>
           </tbody>
         </table>
-      </details>
-      <details id="他">
+      </details open="true">
+      <details open="true" id="他">
         <summary>他</summary>
         <table>
           <caption>他</caption>
@@ -1200,12 +1256,12 @@
             </tr>
           </tbody>
         </table>
-      </details>
+      </details open="true">
     </article>
 
     <h2>備考</h2>
     <article>
-      <details>
+      <details open="true">
         <summary>記号</summary>
         <table>
           <caption>記号</caption>
@@ -1326,8 +1382,8 @@
             </td>
           </tr>
         </table>
-      </details>
-      <details>
+      </details open="true">
+      <details open="true">
         <summary>例</summary>
         <table>
           <tbody>
@@ -1349,13 +1405,13 @@
           実行時間は、Atmega328のものです。<br>
           右下は分岐が行われるときのものです。
         </p>
-      </details>
+      </details open="true">
   
     </article>
 
     <h2>ご注意</h2>
     <article>
-      <details>
+      <details open="true">
         <summary>免責事項</summary>
         <p>
           このページの内容は全て架空のものです。<br>
@@ -1365,7 +1421,7 @@
         <a href="./index.html">ホーム</a>
         <a href="./avrR.html">レジスタ</a>
         <a href="./pin.html">arduino ピンアサイン表</a>
-      </details>
+      </details open="true">
     </article>
 
   </body>
