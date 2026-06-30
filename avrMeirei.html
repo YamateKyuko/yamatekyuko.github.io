@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>AVR命令一式</title>
     <link rel="stylesheet" href="style/avrMeirei.css">
   </head>
   <body>
@@ -377,7 +377,7 @@
         </table>
 
         
-      </details open="true">
+      </details>
       <details open="true" id="汎用">
         <summary>汎用レジスタ</summary>
         <!-- 他 -->
@@ -491,7 +491,7 @@
             </tr>
           </tbody>
         </table>
-      </details open="true">
+      </details>
       <!-- <details open="true">
         <summary>比較</summary>
         <table>
@@ -537,7 +537,7 @@
             </tr>
           </tbody>
         </table>
-      </details open="true"> -->
+      </details> -->
       <details open="true" id="SREG">
         <summary>SREG</summary>
 
@@ -843,9 +843,9 @@
             </tr>
           </tbody>
         </table>
-      </details open="true">
+      </details>
       <details open="true" id="分岐">
-        <summary>分岐</summary>
+        <summary>ジャンプ</summary>
         <!-- 分岐 -->
         <table>
           <caption>ジャンプ</caption>
@@ -952,69 +952,11 @@
           </tbody>
         </table>
 
-      </details open="true">
-      <details open="true" id="I/O">
+      </details>
+      <!-- <details open="true" id="I/O">
         <summary>I/O</summary>
-        <table>
-          <caption>I/O</caption>
-          <thead>
-            <tr>
-              <th>命令</th>
-              <th>入出力</th>
-              <th>ﾋﾞｯﾄｽｷｯﾌﾟ</th>
-              <th>ビット設定</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                0
-              </td>
-              <td>
-                IN
-                <div>1</div>
-                <span>Rd, A</span>
-                <span>Rd ← IO(A)</span>
-              </td>
-              <td>
-                SBIC
-                <div>1</div>
-                <span>A,b</span>
-                <span>IO(A,b)==0&&PC+=2·3</span>
-              </td>
-              <td>
-                CBI
-                <div>1</div>
-                <span>A,b</span>
-                <span>IO(A,b) ← 0</span>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                1
-              </td>
-              <td>
-                OUT
-                <div>1</div>
-                <span>A, Rd</span>
-                <span>IO(A) ← Rd</span>
-              </td>
-              <td>
-                SBIS
-                <div>1</div>
-                <span>A,b</span>
-                <span>IO(A,b)==1 && PC+=2·3</span>
-              </td>
-              <td>
-                SBI
-                <div>1</div>
-                <span>A,b</span>
-                <span>IO(A,b) ← 1</span>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </details open="true">
+
+      </details> -->
       <details open="true" id="データ空間">
 
         <summary>データ空間</summary>
@@ -1092,8 +1034,68 @@
             </tr>
           </tbody>
         </table>
+
+        <table>
+          <caption>I/O</caption>
+          <thead>
+            <tr>
+              <th>命令</th>
+              <th>入出力</th>
+              <th>ﾋﾞｯﾄｽｷｯﾌﾟ</th>
+              <th>ビット設定</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                0
+              </td>
+              <td>
+                IN
+                <div>1</div>
+                <span>Rd, A</span>
+                <span>Rd ← IO(A)</span>
+              </td>
+              <td>
+                SBIC
+                <div>1</div>
+                <span>A,b</span>
+                <span>IO(A,b)==0&&PC+=2·3</span>
+              </td>
+              <td>
+                CBI
+                <div>1</div>
+                <span>A,b</span>
+                <span>IO(A,b) ← 0</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                1
+              </td>
+              <td>
+                OUT
+                <div>1</div>
+                <span>A, Rd</span>
+                <span>IO(A) ← Rd</span>
+              </td>
+              <td>
+                SBIS
+                <div>1</div>
+                <span>A,b</span>
+                <span>IO(A,b)==1 && PC+=2·3</span>
+              </td>
+              <td>
+                SBI
+                <div>1</div>
+                <span>A,b</span>
+                <span>IO(A,b) ← 1</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       
-      </details open="true">
+      </details>
       <details open="true" id="プログラム空間">
         <summary>プログラム空間</summary>
         <table>
@@ -1174,7 +1176,7 @@
             </tr>
           </tbody>
         </table>
-      </details open="true">
+      </details>
       <details open="true" id="スタック">
         <summary>スタック</summary>
         <table>
@@ -1205,7 +1207,7 @@
             </tr>
           </tbody>
         </table>
-      </details open="true">
+      </details>
       <details open="true" id="他">
         <summary>他</summary>
         <table>
@@ -1256,7 +1258,7 @@
             </tr>
           </tbody>
         </table>
-      </details open="true">
+      </details>
     </article>
 
     <h2>備考</h2>
@@ -1382,7 +1384,7 @@
             </td>
           </tr>
         </table>
-      </details open="true">
+      </details>
       <details open="true">
         <summary>例</summary>
         <table>
@@ -1405,7 +1407,7 @@
           実行時間は、Atmega328のものです。<br>
           右下は分岐が行われるときのものです。
         </p>
-      </details open="true">
+      </details>
   
     </article>
 
@@ -1421,7 +1423,7 @@
         <a href="./index.html">ホーム</a>
         <a href="./avrR.html">レジスタ</a>
         <a href="./pin.html">arduino ピンアサイン表</a>
-      </details open="true">
+      </details>
     </article>
 
   </body>
